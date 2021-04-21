@@ -79,7 +79,7 @@ AddEventHandler('qb-taxi:client:DoTaxiNpc', function()
                 if NpcData.NpcBlip ~= nil then
                     RemoveBlip(NpcData.NpcBlip)
                 end
-                QBCore.Functions.Notify('The NPC Is Indicated On Your GPS', 'success')
+                QBCore.Functions.Notify('du knullade mamma', 'success')
                 NpcData.NpcBlip = AddBlipForCoord(Config.NPCLocations.TakeLocations[NpcData.CurrentNpc].x, Config.NPCLocations.TakeLocations[NpcData.CurrentNpc].y, Config.NPCLocations.TakeLocations[NpcData.CurrentNpc].z)
                 SetBlipColour(NpcData.NpcBlip, 3)
                 SetBlipRoute(NpcData.NpcBlip, true)
