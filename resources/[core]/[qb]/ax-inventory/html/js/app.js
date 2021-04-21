@@ -127,7 +127,7 @@ $(document).on("click", ".item-slot", function(e){
             if ((ItemData.name).split("_")[0] == "weapon") {
                 if (!$("#weapon-attachments").length) {
                     // if (ItemData.info.attachments !== null && ItemData.info.attachments !== undefined && ItemData.info.attachments.length > 0) {
-                    $(".inv-options-list").append('<center><div style="background-color: #466887;" class="inv-option-item" id="weapon-attachments"><p>ATTACHMENTS</p></div></center>');
+                    $(".inv-options-list").append('<center><div style="background-color: #466887;" class="inv-option-item" id="weapon-attachments"><p>TILLBEHÖR</p></div></center>');
                     $("#weapon-attachments").hide().fadeIn(250);
                     ClickedItemData = ItemData;
                     // }
@@ -197,7 +197,7 @@ function FormatAttachmentInfo(data) {
 
         $(".weapon-attachments-container-title").html(data.WeaponData.label + " | " + AmmoLabel);
         $(".weapon-attachments-container-description").html(data.WeaponData.description);
-        $(".weapon-attachments-container-details").html('<span style="font-weight: bold; letter-spacing: .1vh;">Serial Number</span><br> ' + ClickedItemData.info.serie + '<br><br><span style="font-weight: bold; letter-spacing: .1vh;">Durability - ' + Durability.toFixed() + '% </span> <div class="weapon-attachments-container-detail-durability"><div class="weapon-attachments-container-detail-durability-total"></div></div>')
+        $(".weapon-attachments-container-details").html('<span style="font-weight: bold; letter-spacing: .1vh;">Serienummer</span><br> ' + ClickedItemData.info.serie + '<br><br><span style="font-weight: bold; letter-spacing: .1vh;">Durability - ' + Durability.toFixed() + '% </span> <div class="weapon-attachments-container-detail-durability"><div class="weapon-attachments-container-detail-durability-total"></div></div>')
         $(".weapon-attachments-container-detail-durability-total").css({
             width: Durability + "%"
         });
@@ -206,7 +206,7 @@ function FormatAttachmentInfo(data) {
 
         if (data.AttachmentData !== null && data.AttachmentData !== undefined) {
             if (data.AttachmentData.length > 0) {
-                $(".weapon-attachments-title").html('<span style="font-weight: bold; letter-spacing: .1vh;">Attachments</span>');
+                $(".weapon-attachments-title").html('<span style="font-weight: bold; letter-spacing: .1vh;">Tillbehör</span>');
                 $.each(data.AttachmentData, function(i, attachment){
                     var WeaponType = (data.WeaponData.ammotype).split("_")[1].toLowerCase();
                     $(".weapon-attachments").append('<div class="weapon-attachment" id="weapon-attachment-'+i+'"> <div class="weapon-attachment-label"><p>' + attachment.label + '</p></div> <div class="weapon-attachment-img"><img src="./images/' + WeaponType + '_' + attachment.attachment + '.png"></div> </div>')
@@ -262,7 +262,7 @@ function handleAttachmentDrag() {
                             AttachmentDraggingData = null;
                             $(".weapon-attachments").html("");
                         });
-                        $(".weapon-attachments-title").html('<span style="font-weight: bold; letter-spacing: .1vh;">This gun doesn\'t contain attachments</span>');
+                        $(".weapon-attachments-title").html('<span style="font-weight: bold; letter-spacing: .1vh;">Detta vapen har inga tillbehör.</span>');
                     }
                 } else {
                     $("#weapon-attachment-" + AttachmentDraggingData.id).fadeOut(150, function(){
@@ -270,7 +270,7 @@ function handleAttachmentDrag() {
                         AttachmentDraggingData = null;
                         $(".weapon-attachments").html("");
                     });
-                    $(".weapon-attachments-title").html('<span style="font-weight: bold; letter-spacing: .1vh;">This gun doesn\'t contain attachments</span>');
+                    $(".weapon-attachments-title").html('<span style="font-weight: bold; letter-spacing: .1vh;">Detta vapen har inga tillbehör.</span>');
                 }
             });
         },
@@ -293,7 +293,7 @@ $(document).on('click', '#weapon-attachments', function(e){
         FormatAttachmentInfo(ClickedItemData);    
     } else {
         $.post('http://ax-inventory/Notify', JSON.stringify({
-            message: "Attachments are unavailable for this gun.",
+            message: "Det finns inga tillbehör till detta vapen.",
             type: "error"
         }))
     }
